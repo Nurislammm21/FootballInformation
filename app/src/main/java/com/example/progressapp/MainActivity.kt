@@ -12,18 +12,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val infoList = ArrayList<Information>().apply {
+        val infoList = getInformationList()
+
+    }
+
+    private fun getInformationList(): ArrayList<Information>{
+        return  ArrayList<Information>().apply {
             add(
                 Information(
-                id = "Real Madrid",
-                title = "Real Madrid",
-                description = "Description of the club",
-                descriptionLong = "A longer description that is will not be only one line it will takes more",
-                buttonText = "Learn more",
-                headerImageIdResource = R.drawable.realmadrid,
-                headerImageUrl = "https://i.pinimg.com/originals/46/01/54/46015466f7484ed7628049f62c2db2cd.jpg"
+                    id = "Real Madrid",
+                    title = "Real Madrid",
+                    description = "Description of the club",
+                    descriptionLong = "A longer description that is will not be only one line it will takes more",
+                    buttonText = "Learn more",
+                    headerImageIdResource = R.drawable.realmadrid,
+                    headerImageUrl = "https://i.pinimg.com/originals/46/01/54/46015466f7484ed7628049f62c2db2cd.jpg"
 
-            )
+                )
             )
             add(
                 Information(
@@ -91,9 +96,7 @@ class MainActivity : AppCompatActivity() {
 
                 )
             )
-
         }
-
     }
 }
 
