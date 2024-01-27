@@ -14,9 +14,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:cardCornerRadius="10dp"
-        app:cardElevation="8dp"
         app:strokeColor="@color/black"
         app:strokeWidth="2dp"
+        app:cardBackgroundColor="@color/card_background_color"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout

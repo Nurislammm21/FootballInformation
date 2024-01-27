@@ -1,18 +1,30 @@
 package com.example.progressapp
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.progressapp.adapters.InformationAdapter
 import com.example.progressapp.data.Information
+import com.example.progressapp.data.InformationInterface
 import com.example.progressapp.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), InformationInterface  {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: InformationAdapter
+    private lateinit var infoList : ArrayList<Information>
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        infoList = getInformationList()
+        adapter = InformationAdapter(infoList,this)
+        binding.rcView.adapter = adapter
+        binding.rcView.layoutManager = LinearLayoutManager(this)
+        adapter.notifyDataSetChanged()
 
-        val infoList = getInformationList()
 
     }
 
@@ -97,6 +109,11 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         }
+    }
+
+    override fun onLearnMoreButton(position: Int) {
+           val intent = Intent(this,InformationDetailsActivity::class.java)
+        startActivity(intent)
     }
 }
 
