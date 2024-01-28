@@ -7,19 +7,52 @@
     android:background="@color/background_color"
     tools:context=".MainActivity">
 
-   <androidx.recyclerview.widget.RecyclerView
-       android:id="@+id/rc_view"
-       android:layout_width="0dp"
-       android:layout_height="0dp"
-       android:clipToPadding="false"
-   android:paddingBottom="24dp"
-       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+   <LinearLayout
+       android:id="@+id/linearLayout"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
        android:orientation="vertical"
-       app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent">
+
+      <com.google.android.material.appbar.AppBarLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent">
+
+         <androidx.appcompat.widget.Toolbar
+             android:id="@+id/toolbarActivity"
+             android:layout_width="match_parent"
+             android:layout_height="?attr/actionBarSize"
+             android:background="#DCB729"
+             app:titleTextColor="@color/black" />
+      </com.google.android.material.appbar.AppBarLayout>
+   </LinearLayout>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:orientation="vertical"
        app:layout_constraintBottom_toBottomOf="parent"
-       tools:listitem="@layout/info_one_item"
-       />
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/rc_view"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical"
+          app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+          android:clipToPadding="false"
+          android:paddingBottom="24dp"
+          tools:listitem="@layout/info_one_item" />
+   </LinearLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

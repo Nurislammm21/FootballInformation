@@ -7,28 +7,48 @@
     tools:context=".InformationDetailsActivity">
 
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/teamHeaderImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/black"
+            android:background="@color/background_color" />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/teamHeaderImageView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="240dp"
         android:scaleType="centerCrop"
         app:layout_constraintDimensionRatio="16:9"
-        tools:src="@drawable/realmadrid"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/txt_title"
+        tools:ignore="NotSibling"
+        tools:src="@drawable/realmadrid" />
 
     <TextView
         android:id="@+id/txt_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
+        android:gravity="center"
         android:textColor="@color/black"
         android:textStyle="bold|italic"
         android:background="@color/black_background"
         android:textSize="24sp"
         tools:text="Real Madrid"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/teamHeaderImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/description_txt"
         />
 
     <TextView
@@ -55,6 +75,8 @@
         app:layout_constraintTop_toBottomOf="@id/description_txt"
         app:layout_constraintStart_toStartOf="@id/description_txt"
         />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

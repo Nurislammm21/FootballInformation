@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.progressapp.adapters.InformationAdapter
 import com.example.progressapp.data.Information
@@ -24,7 +25,11 @@ class MainActivity : AppCompatActivity(), InformationInterface  {
         binding.rcView.adapter = adapter
         binding.rcView.layoutManager = LinearLayoutManager(this)
         adapter.notifyDataSetChanged()
-
+        setSupportActionBar(binding.toolbarActivity)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            title = "Football Teams"
+        }
 
     }
 
@@ -38,7 +43,8 @@ class MainActivity : AppCompatActivity(), InformationInterface  {
                     descriptionLong = "A longer description that is will not be only one line it will takes more",
                     buttonText = "Learn more",
                     headerImageIdResource = R.drawable.realmadrid,
-                    headerImageUrl = "https://i.pinimg.com/originals/46/01/54/46015466f7484ed7628049f62c2db2cd.jpg"
+                    headerImageUrl = "https://i.pinimg.com/originals/46/01/54/46015466f7484ed7628049f62c2db2cd.jpg",
+                    teamUrl = "https://madridistas.com/en-US/madridistas/landing"
 
                 )
             )
@@ -50,7 +56,8 @@ class MainActivity : AppCompatActivity(), InformationInterface  {
                     descriptionLong = "A longer description that is will not be only one line it will takes more",
                     buttonText = "Learn more",
                     headerImageIdResource = R.drawable.barcelona,
-                    headerImageUrl = "https://64.media.tumblr.com/67ca559f9f8bf6b5d5ac85191af4e107/tumblr_od5gdwuxBR1ude0uno1_500h.jpg"
+                    headerImageUrl = "https://64.media.tumblr.com/67ca559f9f8bf6b5d5ac85191af4e107/tumblr_od5gdwuxBR1ude0uno1_500h.jpg",
+                    teamUrl = "https://www.fcbarcelona.com/en/"
 
                 )
             )
@@ -63,7 +70,8 @@ class MainActivity : AppCompatActivity(), InformationInterface  {
                     descriptionLong = "A longer description that is will not be only one line it will takes more",
                     buttonText = "Learn more",
                     headerImageIdResource = R.drawable.tottenham,
-                    headerImageUrl = "https://i.pinimg.com/originals/a5/91/3b/a5913b877183e02ab86b2d59708c565a.jpg"
+                    headerImageUrl = "https://i.pinimg.com/originals/a5/91/3b/a5913b877183e02ab86b2d59708c565a.jpg",
+                    teamUrl = "https://www.tottenhamhotspur.com/"
 
                 )
             )
@@ -77,7 +85,8 @@ class MainActivity : AppCompatActivity(), InformationInterface  {
                     descriptionLong = "A longer description that is will not be only one line it will takes more",
                     buttonText = "Learn more",
                     headerImageIdResource = R.drawable.bayern,
-                    headerImageUrl = "https://64.media.tumblr.com/0ee98a3a44475b685fb8b42716e01b04/tumblr_od5g941hwm1ude0uno1_500h.jpg"
+                    headerImageUrl = "https://64.media.tumblr.com/0ee98a3a44475b685fb8b42716e01b04/tumblr_od5g941hwm1ude0uno1_500h.jpg",
+                    teamUrl = "https://fcbayern.com/en"
 
                 )
             )
@@ -90,7 +99,8 @@ class MainActivity : AppCompatActivity(), InformationInterface  {
                     descriptionLong = "A longer description that is will not be only one line it will takes more",
                     buttonText = "Learn more",
                     headerImageIdResource = R.drawable.liverpool,
-                    headerImageUrl = "https://pbs.twimg.com/media/CrVea3NVMAAEhKn?format=jpg&name=4096x4096"
+                    headerImageUrl = "https://pbs.twimg.com/media/CrVea3NVMAAEhKn?format=jpg&name=4096x4096",
+                    teamUrl = "https://www.liverpoolfc.com/"
 
                 )
             )
@@ -104,7 +114,8 @@ class MainActivity : AppCompatActivity(), InformationInterface  {
                     descriptionLong = "A longer description that is will not be only one line it will takes more",
                     buttonText = "Learn more",
                     headerImageIdResource = R.drawable.chelsea,
-                    headerImageUrl = "https://i.pinimg.com/originals/66/2b/ea/662beac3242f10215dc5e826919b3fb3.jpg"
+                    headerImageUrl = "https://i.pinimg.com/originals/66/2b/ea/662beac3242f10215dc5e826919b3fb3.jpg",
+                    teamUrl = "https://www.chelsea.com/"
 
                 )
             )
@@ -112,8 +123,21 @@ class MainActivity : AppCompatActivity(), InformationInterface  {
     }
 
     override fun onLearnMoreButton(position: Int) {
-           val intent = Intent(this,InformationDetailsActivity::class.java)
+        val information = infoList[position]
+           val intent = Intent(this,InformationDetailsActivity::class.java).apply {
+                    putExtra("information",information)
+           }
         startActivity(intent)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            android.R.id.home->{
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
 
