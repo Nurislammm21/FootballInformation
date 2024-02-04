@@ -9,4 +9,14 @@
         android:icon="@drawable/ic_link"
         />
 
+    <item
+        android:id="@+id/menuItemFavorite"
+        android:title="favorite"
+        app:showAsAction="always"
+        android:orderInCategory="2"
+        android:icon="@drawable/ic_favorite"
+
+        />
+
+
 </menu>

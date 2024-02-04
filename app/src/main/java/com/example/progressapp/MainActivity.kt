@@ -14,7 +14,9 @@ import com.example.progressapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity(), InformationInterface  {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: InformationAdapter
-    private lateinit var infoList : ArrayList<Information>
+     companion object{
+         lateinit var infoList : ArrayList<Information>
+     }
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -125,7 +127,7 @@ class MainActivity : AppCompatActivity(), InformationInterface  {
     override fun onLearnMoreButton(position: Int) {
         val information = infoList[position]
            val intent = Intent(this,InformationDetailsActivity::class.java).apply {
-                    putExtra("information",information)
+                    putExtra("informationID",information.id)
            }
         startActivity(intent)
     }

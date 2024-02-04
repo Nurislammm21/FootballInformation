@@ -26,7 +26,12 @@ class InformationDetailsActivity : AppCompatActivity() {
             title = "Football Club"
         }
 
-         informational = intent.getSerializableExtra("information") as? Information ?: Information(
+       //  informational = intent.getSerializableExtra("information") as? Information
+
+        val selectedInformationID = intent.getStringExtra("informationID")
+        informational = MainActivity.infoList.find {
+            it.id == selectedInformationID
+        }?: Information(
             title = "404 FORBIDDEN",
             description = "Something get wrong repeat after 5 minutes")
 
@@ -50,12 +55,32 @@ class InformationDetailsActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+
+            R.id.menuItemFavorite ->{
+                    val isCurrentlyFavorite = informational.isFavorite
+                    if(isCurrentlyFavorite){
+                        item.setIcon(R.drawable.ic_favorite)
+                    }else{
+                        item.setIcon(R.drawable.ic_favorite_filled)
+                    }
+
+
+                informational.isFavorite =! isCurrentlyFavorite
+                true
+            }
+
+
             else -> super.onOptionsItemSelected(item)
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_information,menu)
+
+        if(informational.isFavorite){
+            menu?.findItem(R.id.menuItemFavorite)?.setIcon(R.drawable.ic_favorite_filled)
+        }
+
         return true
 
     }

@@ -10,8 +10,9 @@ data class Information(
         val buttonText: String = "",
         val headerImageIdResource: Int = 0,
         val headerImageUrl: String? = null,
-        val teamUrl: String = ""
-): Serializable
+        val teamUrl: String = "",
+        var isFavorite: Boolean = false
+)
 
 
 
